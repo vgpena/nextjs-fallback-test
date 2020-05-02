@@ -29,7 +29,7 @@ function NamesList(names) {
 }
 
 export async function getStaticProps() {
-  const namesPath = path.join(process.cwd(), "names.json");
+  const namesPath = path.join(process.cwd(), "data", "names.json");
   const namesData = JSON.parse(fs.readFileSync(namesPath, "utf-8"));
 
   return {
