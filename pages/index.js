@@ -29,8 +29,6 @@ function NamesList(names) {
 }
 
 export async function getStaticProps() {
-  // const res = await fetch("../names.json");
-  // const names = await res.json().names;
   const namesPath = path.join(process.cwd(), "names.json");
   const namesData = JSON.parse(fs.readFileSync(namesPath, "utf-8"));
 
