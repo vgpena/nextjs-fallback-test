@@ -1,30 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# Next.js static + fallbacks proof of concept
 
-## Getting Started
+Testing out `fallback: true` behavior for a Next.js app that builds static.
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+`yarn`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+`yarn build` to generate the prod app.
 
-## Learn More
+`yarn start` to serve the prod app.
 
-To learn more about Next.js, take a look at the following resources:
+## Process
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Run `yarn build` (or, subsequently, `yarn rebuild`) to generate the app to the `.prod` folder.
+1. Open `.next/server/static/people` to see that currently only Mario is in there.
+1. Run `yarn start` to serve the app. Browse to `localhost:3000`, with an eye on `./next/server/static/people`. Note that Peach and Bowser are generated, since their pages are linked to from the Index page.
+1. Browse to Peach or Bowser. Note that the page loads as expected.
+1. Manually edit the URL to be `localhost:3000/people/waluigi`. Note that the page loads as expected and Waluigi files are generated in `./next/server/static/people`.
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**EXTRA CREDIT**: Change `fallback: true` to `fallback: false` in `pages/people/[name].js`, rebuild, and restart the app to prevent Waluigi from being generated.
