@@ -35,6 +35,6 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   return {
     paths: [{ params: { name: "mario" } }],
-    fallback: false,
+    fallback: true,
   };
 }
